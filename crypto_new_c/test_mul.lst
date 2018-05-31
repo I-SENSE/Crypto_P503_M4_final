@@ -1,0 +1,435 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.test1|,CODE, READONLY
+    2 00000000         
+    3 00000000                 EXPORT           multiply32x32_asm
+    4 00000000         
+    5 00000000         multiply32x32_asm
+                               PROC
+    6 00000000         
+    7 00000000 B438            push             {r3-r5}
+    8 00000002         ; R0 input , R1 input 2, R3 output address
+    9 00000002 0C0B            lsrs             r3,r1,#16   ; r3 = hi[2]
+   10 00000004 B289            uxth             r1,r1       ; r1 = lo[2]
+   11 00000006 460C            mov              r4,r1       ; r4 = lo[2]
+   12 00000008 B285            uxth             r5,r0       ; r5 = lo[1]
+   13 0000000A 0C00            lsrs             r0,#16      ; r0 = hi[1]
+   14 0000000C 436C            muls             r4,r5,r4    ; lo[1] x lo[2] => 
+                                                            save into lo[2] 
+   15 0000000E 435D            muls             r5,r3,r5    ; hi[2] x lo[1] => 
+                                                            save into lo[1] hil
+                                                            o1
+   16 00000010 4341            muls             r1,r0,r1    ; hi[1] x lo[2] => 
+                                                            save into lo[2] hil
+                                                            o2
+   17 00000012 4343            muls             r3,r0,r3    ; hi[1] x hi[2] => 
+                                                            save into hi[2] 
+   18 00000014 0428            lsls             r0,r5,#16   ; L of hilo 1
+   19 00000016 0C2D            lsrs             r5,r5,#16   ; R of hilo 1
+   20 00000018 1824            adds             r4,r0       ; lolo + L hilo1
+   21 0000001A 416B            adcs             r3,r5       ; hihi + R hilo1
+   22 0000001C 0408            lsls             r0,r1,#16   ; L of hilo2
+   23 0000001E 0C0D            lsrs             r5,r1,#16   ; R of hilo2
+   24 00000020 1824            adds             r4,r0       ; lolo + L hilo2
+   25 00000022 416B            adcs             r3,r5       ; hihi + R hilo2
+   26 00000024 6014            str              r4,[r2,#0x00]
+   27 00000026 6053            str              r3,[r2,#0x04]
+   28 00000028 BC38            pop              {r3-r5}
+   29 0000002A         
+   30 0000002A 4770            BX               lr
+   31 0000002C         
+   32 0000002C                 ENDP
+   33 0000002C         
+   34 0000002C                 AREA             |.test1|,CODE, READONLY
+   35 0000002C         
+   36 0000002C                 EXPORT           multiply32x32_asm_m4
+   37 0000002C         
+   38 0000002C         multiply32x32_asm_m4
+                               PROC
+   39 0000002C         
+   40 0000002C FBA0 0101       umull            r0,r1,r0,r1
+   41 00000030 6010            str              r0,[r2,#0x00]
+   42 00000032 6051            str              r1,[r2,#0x04]
+   43 00000034 4770            BX               lr
+   44 00000036         
+   45 00000036                 ENDP
+   46 00000036         
+   47 00000036         
+   48 00000036                 EXPORT           test_low_mid
+   49 00000036         test_low_mid
+                               PROC
+   50 00000036         ; r0 address of low
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   51 00000036         ; r1 address of mid 
+   52 00000036 B4F8            push             {r3-r7}
+   53 00000038 C878            ldm              r0!,{r3,r4,r5,r6} ; move first 
+                                                            4 words of low
+   54 0000003A C278            stm              r2!,{r3,r4,r5,r6} ; save first 
+                                                            4 words of low
+   55 0000003C C878            ldm              r0!,{r3,r4,r5,r6} ; move 2nd fi
+                                                            rst 4 word of low
+   56 0000003E C278            stm              r2!,{r3,r4,r5,r6} ; save 2nd 4 
+                                                            words of low
+   57 00000040 C878            ldm              r0!,{r3,r4,r5,r6} ; move 3rd 4 
+                                                            word of low
+   58 00000042 680F            ldr              r7,[r1,#0x00] ; get 1st word of
+                                                             mid 
+   59 00000044 19DB            adds             r3,r3,r7    ; update 9th word 
+   60 00000046 684F            ldr              r7,[r1,#0x04] ; get 2nd word of
+                                                             mid
+   61 00000048 417C            adcs             r4,r4,r7    ; update 10th word
+   62 0000004A 688F            ldr              r7,[r1,#0x08] ; get 3rd word of
+                                                             mid 
+   63 0000004C 417D            adcs             r5,r5,r7    ; update 11th word
+   64 0000004E 68CF            ldr              r7,[r1,#0x0C] ; get 4th word of
+                                                             mid 
+   65 00000050 417E            adcs             r6,r6,r7    ; update 12th word
+   66 00000052 C278            stm              r2!,{r3,r4,r5,r6} ; save 4 word
+                                                            s of low + 4 first 
+                                                            word mid
+   67 00000054 C878            ldm              r0!,{r3,r4,r5,r6} ; move last 4
+                                                             word of low
+   68 00000056 690F            ldr              r7,[r1,#0x10] ; get 5th word of
+                                                             mid 
+   69 00000058 417B            adcs             r3,r3,r7    ; update 13th word 
+                                                            
+   70 0000005A 694F            ldr              r7,[r1,#0x14] ; get 6th word of
+                                                             mid
+   71 0000005C 417C            adcs             r4,r4,r7    ; update 14th word
+   72 0000005E 698F            ldr              r7,[r1,#0x18] ; get 7th word of
+                                                             mid 
+   73 00000060 417D            adcs             r5,r5,r7    ; update 15th word
+   74 00000062 69CF            ldr              r7,[r1,#0x1C] ; get 8th word of
+                                                             mid 
+   75 00000064 417E            adcs             r6,r6,r7    ; update 16th word
+   76 00000066 C278            stm              r2!,{r3,r4,r5,r6} ; save last 4
+                                                             words of low + 4 f
+                                                            irst word mid 
+   77 00000068 6A0B            ldr              r3,[r1,#0x20] ; get 9th word of
+                                                             mid 
+   78 0000006A F153 0300       adcs             r3,r3,#0x00 ; update the c flag
+                                                             9th word mid
+   79 0000006E 6A4C            ldr              r4,[r1,#0x24] ; get 10th word o
+                                                            f mid 
+   80 00000070 F154 0400       adcs             r4,r4,#0x00 ; update the c flag
+                                                             10th word mid
+   81 00000074 6A8D            ldr              r5,[r1,#0x28] ; get 11th word o
+                                                            f mid 
+   82 00000076 F155 0500       adcs             r5,r5,#0x00 ; update the c flag
+                                                             11th word mid
+   83 0000007A 6ACE            ldr              r6,[r1,#0x2C] ; get 12th word o
+                                                            f mid 
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   84 0000007C F156 0600       adcs             r6,r6,#0x00 ; update the c flag
+                                                             12th word mid
+   85 00000080 C278            stm              r2!,{r3,r4,r5,r6} ; save 2nd 4 
+                                                            words of low
+   86 00000082 6B0B            ldr              r3,[r1,#0x30] ; get 13th word o
+                                                            f mid 
+   87 00000084 F153 0300       adcs             r3,r3,#0x00 ; update the c flag
+                                                             13th word mid
+   88 00000088 6B4C            ldr              r4,[r1,#0x34] ; get 14th word o
+                                                            f mid 
+   89 0000008A F154 0400       adcs             r4,r4,#0x00 ; update the c flag
+                                                             14th word mid
+   90 0000008E 6B8D            ldr              r5,[r1,#0x38] ; get 15th word o
+                                                            f mid 
+   91 00000090 F155 0500       adcs             r5,r5,#0x00 ; update the c flag
+                                                             15th word mid
+   92 00000094 6BCE            ldr              r6,[r1,#0x3C] ; get 16th word o
+                                                            f mid 
+   93 00000096 F156 0600       adcs             r6,r6,#0x00 ; update the c flag
+                                                             16th word mid
+   94 0000009A 2700            movs             r7,#0x00
+   95 0000009C F157 0700       adcs             r7,r7,#0x00 ; update the c flag
+                                                             17th word mid
+   96 000000A0 C2F8            stm              r2!,{r3,r4,r5,r6,r7} ; save 2nd
+                                                             4 words of low
+   97 000000A2 BCF8            pop              {r3-r7}
+   98 000000A4         
+   99 000000A4         
+  100 000000A4 4770            BX               lr
+  101 000000A6         
+  102 000000A6                 ENDP
+  103 000000A6         
+  104 000000A6         
+  105 000000A6         
+  106 000000A6         
+  107 000000A6         
+  108 000000A6         
+  109 000000A6                 EXPORT           test_mid
+  110 000000A6         test_mid
+                               PROC
+  111 000000A6         ; r0 address of mid
+  112 000000A6         ; r1 address of output 
+  113 000000A6 B4F8            push             {r3-r7}
+  114 000000A8 F101 0120       add              r1,r1,#0x20 ; point the output 
+                                                            to the 8th word
+  115 000000AC E891 0078       ldm              r1,{r3,r4,r5,r6} ; load first 4
+                                                             words
+  116 000000B0 6807            ldr              r7,[r0,#0x00] ; get 1st word of
+                                                             mid 
+  117 000000B2 19DB            adds             r3,r3,r7    ; update 1st word 
+  118 000000B4 6847            ldr              r7,[r0,#0x04] ; get 2nd word of
+                                                             mid
+  119 000000B6 417C            adcs             r4,r4,r7    ; update 2nd word
+  120 000000B8 6887            ldr              r7,[r0,#0x08] ; get 3rd word of
+                                                             mid 
+  121 000000BA 417D            adcs             r5,r5,r7    ; update 3rd word
+  122 000000BC 68C7            ldr              r7,[r0,#0x0C] ; get 4th word of
+                                                             mid 
+  123 000000BE 417E            adcs             r6,r6,r7    ; update 4th word
+
+
+
+ARM Macro Assembler    Page 4 
+
+
+  124 000000C0 C178            stm              r1!,{r3,r4,r5,r6} ; save 4 word
+                                                            s + 4 first word mi
+                                                            d
+  125 000000C2         ; next 4 words
+  126 000000C2 E891 0078       ldm              r1,{r3,r4,r5,r6} ; load first 4
+                                                             words
+  127 000000C6 6907            ldr              r7,[r0,#0x10] ; get 5th word of
+                                                             mid 
+  128 000000C8 417B            adcs             r3,r3,r7    ; update 5th word 
+  129 000000CA 6947            ldr              r7,[r0,#0x14] ; get 6th word of
+                                                             mid
+  130 000000CC 417C            adcs             r4,r4,r7    ; update 6th word
+  131 000000CE 6987            ldr              r7,[r0,#0x18] ; get 7th word of
+                                                             mid 
+  132 000000D0 417D            adcs             r5,r5,r7    ; update 7th word
+  133 000000D2 69C7            ldr              r7,[r0,#0x1C] ; get 8th word of
+                                                             mid 
+  134 000000D4 417E            adcs             r6,r6,r7    ; update 8th word
+  135 000000D6 C178            stm              r1!,{r3,r4,r5,r6} ; save 4 word
+                                                            s + 4 first word mi
+                                                            d
+  136 000000D8         ; next 4 words
+  137 000000D8 E891 0078       ldm              r1,{r3,r4,r5,r6} ; load first 4
+                                                             words
+  138 000000DC 6A07            ldr              r7,[r0,#0x20] ; get 9th word of
+                                                             mid 
+  139 000000DE 417B            adcs             r3,r3,r7    ; update 9th word 
+  140 000000E0 6A47            ldr              r7,[r0,#0x24] ; get 10th word o
+                                                            f mid
+  141 000000E2 417C            adcs             r4,r4,r7    ; update 10th word
+  142 000000E4 6A87            ldr              r7,[r0,#0x28] ; get 11th word o
+                                                            f mid 
+  143 000000E6 417D            adcs             r5,r5,r7    ; update 11th word
+  144 000000E8 6AC7            ldr              r7,[r0,#0x2C] ; get 12th word o
+                                                            f mid 
+  145 000000EA 417E            adcs             r6,r6,r7    ; update 12th word
+  146 000000EC C178            stm              r1!,{r3,r4,r5,r6} ; save 4 word
+                                                            s + 4 first word mi
+                                                            d
+  147 000000EE         ; next 4 words
+  148 000000EE E891 0078       ldm              r1,{r3,r4,r5,r6} ; load first 4
+                                                             words
+  149 000000F2 6B07            ldr              r7,[r0,#0x30] ; get 13th word o
+                                                            f mid 
+  150 000000F4 417B            adcs             r3,r3,r7    ; update 13th word 
+                                                            
+  151 000000F6 6B47            ldr              r7,[r0,#0x34] ; get 14th word o
+                                                            f mid
+  152 000000F8 417C            adcs             r4,r4,r7    ; update 14th word
+  153 000000FA 6B87            ldr              r7,[r0,#0x38] ; get 15th word o
+                                                            f mid 
+  154 000000FC 417D            adcs             r5,r5,r7    ; update 15th word
+  155 000000FE 6BC7            ldr              r7,[r0,#0x3C] ; get 16th word o
+                                                            f mid 
+  156 00000100 417E            adcs             r6,r6,r7    ; update 16th word
+  157 00000102 2700            movs             r7,#0x00
+  158 00000104 F157 0700       adcs             r7,r7,#0x00 ; update the c flag
+                                                             17th word mid
+  159 00000108 C1F8            stm              r1!,{r3,r4,r5,r6,r7} ; save 2nd
+
+
+
+ARM Macro Assembler    Page 5 
+
+
+                                                             4 words of low
+  160 0000010A BCF8            pop              {r3-r7}
+  161 0000010C         
+  162 0000010C         
+  163 0000010C 4770            BX               lr
+  164 0000010E         
+  165 0000010E                 ENDP
+  166 0000010E         
+  167 0000010E         
+  168 0000010E                 EXPORT           test_high
+  169 0000010E         test_high
+                               PROC
+  170 0000010E         ; r0 address of high
+  171 0000010E         ; r1 address of output 
+  172 0000010E         ; only care first 8 words 
+  173 0000010E B4F8            push             {r3-r7}
+  174 00000110 F101 0140       add              r1,r1,#0x40
+  175 00000114 E891 0078       ldm              r1,{r3,r4,r5,r6} ; load first 4
+                                                             words
+  176 00000118 6807            ldr              r7,[r0,#0x00] ; get 1st word of
+                                                             mid 
+  177 0000011A 19DB            adds             r3,r3,r7    ; update 1st word 
+  178 0000011C 6847            ldr              r7,[r0,#0x04] ; get 2nd word of
+                                                             mid
+  179 0000011E 417C            adcs             r4,r4,r7    ; update 2nd word
+  180 00000120 6887            ldr              r7,[r0,#0x08] ; get 3rd word of
+                                                             mid 
+  181 00000122 417D            adcs             r5,r5,r7    ; update 3rd word
+  182 00000124 68C7            ldr              r7,[r0,#0x0C] ; get 4th word of
+                                                             mid 
+  183 00000126 417E            adcs             r6,r6,r7    ; update 4th word
+  184 00000128 C178            stm              r1!,{r3,r4,r5,r6} ; save 4 word
+                                                            s + 4 first word hi
+                                                            gh_low1
+  185 0000012A         ; next 4 words
+  186 0000012A E891 0078       ldm              r1,{r3,r4,r5,r6} ; load first 4
+                                                             words
+  187 0000012E 6907            ldr              r7,[r0,#0x10] ; get 5th word of
+                                                             mid 
+  188 00000130 417B            adcs             r3,r3,r7    ; update 5th word 
+  189 00000132 6947            ldr              r7,[r0,#0x14] ; get 6th word of
+                                                             mid
+  190 00000134 417C            adcs             r4,r4,r7    ; update 6th word
+  191 00000136 6987            ldr              r7,[r0,#0x18] ; get 7th word of
+                                                             mid 
+  192 00000138 417D            adcs             r5,r5,r7    ; update 7th word
+  193 0000013A 69C7            ldr              r7,[r0,#0x1C] ; get 8th word of
+                                                             mid 
+  194 0000013C 417E            adcs             r6,r6,r7    ; update 8th word
+  195 0000013E C178            stm              r1!,{r3,r4,r5,r6} ; save 4 word
+                                                            s + 4 first word hi
+                                                            gh_low2
+  196 00000140         ; next 8 words just need to get the data and update them
+                       
+  197 00000140         
+  198 00000140 6A03            ldr              r3,[r0,#0x20] ; get 24th word o
+                                                            f end
+  199 00000142 680F            ldr              r7,[r1,#0x00]
+  200 00000144 417B            adcs             r3,r3,r7    ; update the c flag
+
+
+
+ARM Macro Assembler    Page 6 
+
+
+                                                             9th word mid
+  201 00000146 6A44            ldr              r4,[r0,#0x24] ; get 10th word o
+                                                            f mid 
+  202 00000148 F154 0400       adcs             r4,r4,#0x00 ; update the c flag
+                                                             10th word mid
+  203 0000014C 6A85            ldr              r5,[r0,#0x28] ; get 11th word o
+                                                            f mid 
+  204 0000014E F155 0500       adcs             r5,r5,#0x00 ; update the c flag
+                                                             11th word mid
+  205 00000152 6AC6            ldr              r6,[r0,#0x2C] ; get 12th word o
+                                                            f mid 
+  206 00000154 F156 0600       adcs             r6,r6,#0x00 ; update the c flag
+                                                             12th word mid
+  207 00000158 C178            stm              r1!,{r3,r4,r5,r6} ; save 2nd 4 
+                                                            words of low
+  208 0000015A 6B03            ldr              r3,[r0,#0x30] ; get 13th word o
+                                                            f mid 
+  209 0000015C F153 0300       adcs             r3,r3,#0x00 ; update the c flag
+                                                             13th word mid
+  210 00000160 6B44            ldr              r4,[r0,#0x34] ; get 14th word o
+                                                            f mid 
+  211 00000162 F154 0400       adcs             r4,r4,#0x00 ; update the c flag
+                                                             14th word mid
+  212 00000166 6B85            ldr              r5,[r0,#0x38] ; get 15th word o
+                                                            f mid 
+  213 00000168 F155 0500       adcs             r5,r5,#0x00 ; update the c flag
+                                                             15th word mid
+  214 0000016C 6BC6            ldr              r6,[r0,#0x3C] ; get 16th word o
+                                                            f mid 
+  215 0000016E F156 0600       adcs             r6,r6,#0x00 ; update the c flag
+                                                             16th word mid
+  216 00000172 C178            stm              r1!,{r3,r4,r5,r6} ; save 2nd 4 
+                                                            words of low
+  217 00000174 BCF8            pop              {r3-r7}
+  218 00000176         
+  219 00000176         
+  220 00000176 4770            BX               lr
+  221 00000178         
+  222 00000178                 ENDP
+  223 00000178         
+  224 00000178         
+  225 00000178         
+  226 00000178                 END
+Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\tes
+t_mul.d -o.\test_mul.o -IC:\Users\tuanl\Documents\unision\crypto_new_c\crypto_n
+ew_c\RTE -IF:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include -IF:\Keil_v5\ARM\P
+ACK\Keil\TM4C_DFP\1.1.0 -IF:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Includ
+e\TM4C129 --list=.\test_mul.lst test_mul.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.test1 00000000
+
+Symbol: .test1
+   Definitions
+      At line 1 in file test_mul.s
+   Uses
+      None
+Comment: .test1 unused
+multiply32x32_asm 00000000
+
+Symbol: multiply32x32_asm
+   Definitions
+      At line 5 in file test_mul.s
+   Uses
+      At line 3 in file test_mul.s
+Comment: multiply32x32_asm used once
+multiply32x32_asm_m4 0000002C
+
+Symbol: multiply32x32_asm_m4
+   Definitions
+      At line 38 in file test_mul.s
+   Uses
+      At line 36 in file test_mul.s
+Comment: multiply32x32_asm_m4 used once
+test_high 0000010E
+
+Symbol: test_high
+   Definitions
+      At line 169 in file test_mul.s
+   Uses
+      At line 168 in file test_mul.s
+Comment: test_high used once
+test_low_mid 00000036
+
+Symbol: test_low_mid
+   Definitions
+      At line 49 in file test_mul.s
+   Uses
+      At line 48 in file test_mul.s
+Comment: test_low_mid used once
+test_mid 000000A6
+
+Symbol: test_mid
+   Definitions
+      At line 110 in file test_mul.s
+   Uses
+      At line 109 in file test_mul.s
+Comment: test_mid used once
+6 symbols
+337 symbols in table

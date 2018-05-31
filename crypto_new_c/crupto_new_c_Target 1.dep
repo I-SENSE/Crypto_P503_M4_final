@@ -1,0 +1,80 @@
+Dependencies for Project 'crupto_new_c', Target 'Target 1': (DO NOT MODIFY !)
+F (.\main.c)(0x5B0F63CF)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I.\src-I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D_RTE_ -DTM4C129ENCPDT-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (F:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\string.h)(0x5346E304)
+I (random.h)(0x5AF09CA4)
+I (fips202.h)(0x5AF09CA4)
+I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346E304)
+I (P503_internal.h)(0x5B09080A)
+I (config.h)(0x5B05A1D4)
+I (F:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5346E304)
+I (P503_api.h)(0x5B049452)
+F (.\config.h)(0x5B05A1D4)()
+F (.\fp_generic.c)(0x5B101E89)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I.\src-I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D_RTE_ -DTM4C129ENCPDT-o .\fp_generic.o --omf_browse .\fp_generic.crf --depend .\fp_generic.d)
+I (P503_internal.h)(0x5B09080A)
+I (config.h)(0x5B05A1D4)
+I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5346E304)
+F (.\P503_internal.h)(0x5B09080A)()
+F (.\P503.c)(0x5B05C7E0)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I.\src-I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D_RTE_ -DTM4C129ENCPDT-o .\p503.o --omf_browse .\p503.crf --depend .\p503.d)
+I (P503_api.h)(0x5B049452)
+I (P503_internal.h)(0x5B09080A)
+I (config.h)(0x5B05A1D4)
+I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5346E304)
+F (.\P503_api.h)(0x5B049452)()
+F (.\fpx.c)(0x5B098067)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I.\src-I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D_RTE_ -DTM4C129ENCPDT-o .\fpx.o --omf_browse .\fpx.crf --depend .\fpx.d)
+I (P503_internal.h)(0x5B09080A)
+I (config.h)(0x5B05A1D4)
+I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5346E304)
+F (.\fpx.h)(0x5B05C88A)()
+F (.\ec_isogeny.c)(0x5B098067)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I.\src-I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D_RTE_ -DTM4C129ENCPDT-o .\ec_isogeny.o --omf_browse .\ec_isogeny.crf --depend .\ec_isogeny.d)
+I (P503_internal.h)(0x5B09080A)
+I (config.h)(0x5B05A1D4)
+I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5346E304)
+F (.\sidh.c)(0x5B06E103)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I.\src-I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D_RTE_ -DTM4C129ENCPDT-o .\sidh.o --omf_browse .\sidh.crf --depend .\sidh.d)
+I (random.h)(0x5AF09CA4)
+I (P503_internal.h)(0x5B09080A)
+I (config.h)(0x5B05A1D4)
+I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5346E304)
+F (.\sike.c)(0x5B05CB0C)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I.\src-I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D_RTE_ -DTM4C129ENCPDT-o .\sike.o --omf_browse .\sike.crf --depend .\sike.d)
+I (F:\Keil_v5\ARM\ARMCC\include\string.h)(0x5346E304)
+I (random.h)(0x5AF09CA4)
+I (fips202.h)(0x5AF09CA4)
+I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346E304)
+I (P503_internal.h)(0x5B09080A)
+I (config.h)(0x5B05A1D4)
+I (F:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5346E304)
+I (P503_api.h)(0x5B049452)
+F (.\random.c)(0x5AF09CA4)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I.\src-I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D_RTE_ -DTM4C129ENCPDT-o .\random.o --omf_browse .\random.crf --depend .\random.d)
+I (random.h)(0x5AF09CA4)
+I (F:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346E304)
+F (.\random.h)(0x5AF09CA4)()
+F (.\fips202.h)(0x5AF09CA4)()
+F (.\fips202.c)(0x5AF09CA4)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I.\src-I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D_RTE_ -DTM4C129ENCPDT-o .\fips202.o --omf_browse .\fips202.crf --depend .\fips202.d)
+I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346E304)
+I (F:\Keil_v5\ARM\ARMCC\include\assert.h)(0x5346E304)
+I (fips202.h)(0x5AF09CA4)
+I (F:\Keil_v5\ARM\ARMCC\include\string.h)(0x5346E304)
+F (.\test_mul.s)(0x5B101E63)(--cpu Cortex-M4.fp -g --apcs=interwork -I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129--list .\test_mul.lst --xref -o .\test_mul.o --depend .\test_mul.d)
+F (.\mul.s)(0x5B08CC54)(--cpu Cortex-M4.fp -g --apcs=interwork -I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129--list .\mul.lst --xref -o .\mul.o --depend .\mul.d)
+F (RTE\Device\TM4C129ENCPDT\startup_TM4C129.s)(0x5B09860B)(--cpu Cortex-M4.fp -g --apcs=interwork -I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129--list .\startup_tm4c129.lst --xref -o .\startup_tm4c129.o --depend .\startup_tm4c129.d)
+F (RTE\Device\TM4C129ENCPDT\system_TM4C129.c)(0x52540084)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I.\src-I C:\Users\tuanl\Documents\unision\crypto_new_c\crypto_new_c\RTE-I F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D_RTE_ -DTM4C129ENCPDT-o .\system_tm4c129.o --omf_browse .\system_tm4c129.crf --depend .\system_tm4c129.d)
+I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346E304)
+I (F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C129.h)(0x530F5566)
+I (F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C129ENCPDT.h)(0x530F5566)
+I (F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4.h)(0x5384CF86)
+I (F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h)(0x530359A0)
+I (F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmFunc.h)(0x530359A0)
+I (F:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x530359A0)
+I (F:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\system_TM4C129.h)(0x51C0534A)
